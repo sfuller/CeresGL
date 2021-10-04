@@ -4,6 +4,6 @@ namespace CeresGL
 {
     public interface ILoader
     {
-        T GetProc<T>(string name) where T: Delegate;
+        T? GetProc<T>(string name) where T: Delegate;
     }
 }
