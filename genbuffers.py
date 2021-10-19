@@ -35,7 +35,7 @@ def main():
 def generate_buffers(bufferfile_path: str) -> None:
     print(f'Generating buffers for {bufferfile_path}')
 
-    with open(bufferfile_path) as f:
+    with open(bufferfile_path, encoding='utf-8-sig') as f:
         root = json.load(f)
 
     vertices: List[Vertex] = []
