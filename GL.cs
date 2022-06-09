@@ -54,6 +54,14 @@ namespace CeresGL
             BufferData(target, count * (uint)sizeof(T), usage);
         }
 
+        public unsafe void BufferSubData<T>(BufferTargetARB target, ulong offset, Span<T> data) where T : unmanaged
+        {
+            fixed (void* dataPtr = data) {
+                uint elementSize = (uint)Marshal.SizeOf<T>();
+                glBufferSubData((uint)target, (IntPtr)(offset * elementSize), (IntPtr)(data.Length * elementSize), (IntPtr)dataPtr);
+            }
+        }
+
         public void TexImage2DPixelBuffer(TextureTarget target, int level, InternalFormat internalFormat, int width, int height, int border, PixelFormat format, PixelType type, uint pboOffset)
         {
             glTexImage2D((uint) target, level, (int)internalFormat, width, height, border, (uint) format, (uint) type, (IntPtr) pboOffset);

@@ -8,7 +8,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glClearBufferuiv_value(Buffer buffer)
         {
             throw new System.NotImplementedException();
@@ -49,16 +49,17 @@ namespace CeresGL
             throw new System.NotImplementedException();
         }
 
-        public static int glGetActiveUniformBlockiv_params(uint program, uint uniformBlockIndex, UniformBlockPName pname)
+        public static int glGetActiveUniformBlockiv_params(uint program, uint uniformBlockIndex
+            , UniformBlockPName pname)
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glTexSubImage3D_pixels(PixelFormat format, PixelType type, int width, int height, int depth)
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetActiveUniformsiv_params(int uniformCount, UniformPName pname)
         {
             throw new System.NotImplementedException();
@@ -73,7 +74,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetUniformdv_params(uint program, int location)
         {
             throw new System.NotImplementedException();
@@ -93,7 +94,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetIntegerv_data(GetPName pname)
         {
             // https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glGet.xhtml
@@ -111,7 +112,7 @@ namespace CeresGL
                 case GetPName.MAX_COMPUTE_SHADER_STORAGE_BLOCKS:
                 case GetPName.MAX_COMBINED_SHADER_STORAGE_BLOCKS:
                 case GetPName.MAX_COMPUTE_UNIFORM_BLOCKS:
-                case GetPName.MAX_COMPUTE_TEXTURE_IMAGE_UNITS: 
+                case GetPName.MAX_COMPUTE_TEXTURE_IMAGE_UNITS:
                 case GetPName.MAX_COMPUTE_UNIFORM_COMPONENTS:
                 case GetPName.MAX_COMPUTE_ATOMIC_COUNTERS:
                 case GetPName.MAX_COMPUTE_ATOMIC_COUNTER_BUFFERS:
@@ -124,10 +125,10 @@ namespace CeresGL
                 case GetPName.CULL_FACE:
                 case GetPName.CULL_FACE_MODE:
                 case GetPName.CURRENT_PROGRAM:
-                
+
                 case GetPName.MAJOR_VERSION:
                 case GetPName.MINOR_VERSION:
-                    
+
                 case GetPName.TEXTURE_BINDING_1D:
                 case GetPName.TEXTURE_BINDING_1D_ARRAY:
                 case GetPName.TEXTURE_BINDING_2D:
@@ -141,22 +142,22 @@ namespace CeresGL
                 case GetPName.TEXTURE_COMPRESSION_HINT:
                 case GetPName.TEXTURE_BUFFER_OFFSET_ALIGNMENT:
                 case GetPName.TIMESTAMP:
-                    
+
                 case GetPName.VERTEX_ARRAY_BINDING:
-                    
+
                 case GetPName.SAMPLER_BINDING:
-                    
+
                     return 1;
-                
+
                 case GetPName.ALIASED_LINE_WIDTH_RANGE:
-                
+
                 case GetPName.POLYGON_MODE:
-                    
+
                     return 2;
                 case GetPName.BLEND_COLOR:
                 case GetPName.COLOR_CLEAR_VALUE:
                 case GetPName.COLOR_WRITEMASK:
-                    
+
                 case GetPName.VIEWPORT:
                 case GetPName.SCISSOR_BOX:
                     return 4;
@@ -164,7 +165,7 @@ namespace CeresGL
                     // Requires glGet of GL_NUM_COMPRESSED_TEXTURE_FORMATS
                     throw new System.NotImplementedException();
             }
-            
+
             throw new System.NotImplementedException();
         }
 
@@ -184,10 +185,10 @@ namespace CeresGL
                 case ShaderParameterName.SHADER_SOURCE_LENGTH:
                     return 1;
             }
-            
+
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetFramebufferAttachmentParameteriv_params(FramebufferAttachmentParameterName pname)
         {
             throw new System.NotImplementedException();
@@ -217,7 +218,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetQueryObjectiv_params(QueryObjectParameterName pname)
         {
             throw new System.NotImplementedException();
@@ -237,7 +238,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetTexParameterIuiv_params(GetTextureParameter pname)
         {
             throw new System.NotImplementedException();
@@ -252,12 +253,12 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glMultiDrawArrays_first(int drawcount)
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glMultiDrawArrays_count(int drawcount)
         {
             throw new System.NotImplementedException();
@@ -266,39 +267,34 @@ namespace CeresGL
         public static int glTexImage2D_pixels(PixelFormat format, PixelType type, int width, int height)
         {
             // https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml
-            
+
             int components = format switch {
-                PixelFormat.RED => 1,
-                PixelFormat.RG => 2,
-                PixelFormat.RGB => 3,
-                PixelFormat.BGR => 3,
-                PixelFormat.RGBA => 4,
-                PixelFormat.BGRA => 4,
-                PixelFormat.DEPTH_COMPONENT => 1,
-                PixelFormat.DEPTH_STENCIL => 2,
-                _ => throw new ArgumentOutOfRangeException(nameof(format))
+                PixelFormat.RED => 1, PixelFormat.RG => 2, PixelFormat.RGB => 3, PixelFormat.BGR => 3
+                , PixelFormat.RGBA => 4, PixelFormat.BGRA => 4, PixelFormat.DEPTH_COMPONENT => 1
+                , PixelFormat.DEPTH_STENCIL => 2, _ => throw new ArgumentOutOfRangeException(nameof(format))
             };
 
             int componentSize = type switch {
-                PixelType.UNSIGNED_BYTE => sizeof(byte),
-                PixelType.BYTE => sizeof(byte),
-                PixelType.UNSIGNED_SHORT => sizeof(ushort),
-                PixelType.SHORT => sizeof(short),
-                PixelType.UNSIGNED_INT => sizeof(uint),
-                PixelType.INT => sizeof(int),
+                PixelType.UNSIGNED_BYTE => sizeof(byte), PixelType.BYTE => sizeof(byte)
+                , PixelType.UNSIGNED_SHORT => sizeof(ushort), PixelType.SHORT => sizeof(short)
+                , PixelType.UNSIGNED_INT => sizeof(uint), PixelType.INT => sizeof(int),
                 // PixelType.HALF_FLOAT => ,  // TODO: Why didn't codegen generate this enumeration!? Looks like a 3+ feature.
-                PixelType.FLOAT => sizeof(float),
-                PixelType.UNSIGNED_BYTE_3_3_2 => sizeof(byte),
+                PixelType.FLOAT => sizeof(float)
+                , PixelType.UNSIGNED_BYTE_3_3_2 => sizeof(byte),
                 //PixelType.UNSIGNED_BYTE_2_2_3_REV => ,
                 //PixelType.UNSIGNED_SHORT_5_6_5 => , // CODE
                 //PixelType.UNSIGNED_SHORT_5_6_5_REV => ,
-                PixelType.UNSIGNED_SHORT_4_4_4_4 => sizeof(short),
+                PixelType.UNSIGNED_SHORT_4_4_4_4 => sizeof(short)
+                ,
                 //PixelType.UNSIGNED_SHORT_4_4_4_4_REV => ,
-                PixelType.UNSIGNED_SHORT_5_5_5_1 => sizeof(short),
+                PixelType.UNSIGNED_SHORT_5_5_5_1 => sizeof(short)
+                ,
                 //PixelType.UNSIGNED_SHORT_1_5_5_5_REV => ,
-                PixelType.UNSIGNED_INT_8_8_8_8 => sizeof(int),
+                PixelType.UNSIGNED_INT_8_8_8_8 => sizeof(int)
+                ,
                 //PixelType.UNSIGNED_INT_8_8_8_8_REV => ,
-                PixelType.UNSIGNED_INT_10_10_10_2 => sizeof(int),
+                PixelType.UNSIGNED_INT_10_10_10_2 => sizeof(int)
+                ,
                 //PixelType.UNSIGNED_INT_2_10_10_10_REV => 
                 _ => throw new ArgumentOutOfRangeException(nameof(type))
             };
@@ -330,12 +326,12 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetTexImage_pixels(TextureTarget target, int level, PixelFormat format, PixelType type)
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetTexLevelParameterfv_params(GetTextureParameter pname)
         {
             throw new System.NotImplementedException();
@@ -396,7 +392,7 @@ namespace CeresGL
         {
             throw new System.NotImplementedException();
         }
-        
+
         public static int glGetBooleani_v_data(BufferTargetARB target)
         {
             throw new System.NotImplementedException();
@@ -495,12 +491,131 @@ namespace CeresGL
         public static int glDrawElementsBaseVertex_indices(int count, DrawElementsType type)
         {
             int indexSize = type switch {
-                DrawElementsType.UNSIGNED_BYTE => sizeof(byte),
-                DrawElementsType.UNSIGNED_SHORT => sizeof(short),
-                DrawElementsType.UNSIGNED_INT => sizeof(int)
+                DrawElementsType.UNSIGNED_BYTE => sizeof(byte), DrawElementsType.UNSIGNED_SHORT => sizeof(short)
+                , DrawElementsType.UNSIGNED_INT => sizeof(int)
                 , _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
             };
             return count * indexSize;
+        }
+
+        public static int glObjectPtrLabel_label(string label, int length)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glMultiDrawArraysIndirect_indirect(int drawcount, int stride)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetDoublei_v_data(uint target)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetProgramResourceLocation_name(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetProgramResourceIndex_name(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetVertexAttribLdv_params(VertexAttribEnum pname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glClearBufferData_data(PixelFormat format, PixelType type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetActiveAtomicCounterBufferiv_params(AtomicCounterBufferPName pname)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glPushDebugGroup_message(string message, int length)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glObjectLabel_label(string label, int length)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glClearTexSubImage_data(PixelFormat format, PixelType type)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glGetFramebufferParameteriv_params(FramebufferAttachmentParameterName pname)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glClearBufferSubData_data(PixelFormat format, PixelType type)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glGetProgramPipelineiv_params(PipelineParameterName pname)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glDebugMessageInsert_buf(string buf, int length)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glDepthRangeArrayv_v(int count)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glGetProgramInterfaceiv_params(ProgramInterfacePName pname)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glMultiDrawElementsIndirect_indirect(int drawcount, int stride)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glScissorArrayv_v(int count)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glGetProgramResourceLocationIndex_name(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glClearTexImage_data(PixelFormat format, PixelType type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glViewportArrayv_v(int count)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glNamedBufferSubData_data(uint size)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static int glGetFloati_v_data(uint target)
+        {
+            throw new NotImplementedException();
         }
     }
 }

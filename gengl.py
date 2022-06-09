@@ -3,7 +3,7 @@ from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
 
 GL_TARGET_MAJOR = 4
-GL_TARGET_MINOR = 0
+GL_TARGET_MINOR = 6
 
 NAMESPACE = 'CeresGL'
 OUTPUT_PATH = 'GL.Generated.cs'
@@ -377,7 +377,7 @@ def gen_wrapper_method(enum_groups: Set[str], command: Command) -> List[str]:
     #
     # Generate teardown code for any parameter translation
     #
-    for param in command.parameters:
+    for param in reversed(command.parameters):
         gen_pointer_argument_teardown(parts, param)
 
     #
@@ -575,6 +575,9 @@ def gl_primitive_to_cs_primitive(gl_type_name: str) -> str:
 
     if gl_type_name == 'GLsync':
         return 'IntPtr'
+    
+    if gl_type_name == 'GLDEBUGPROC':
+        return 'IntPtr'
 
     # if gl_type_name == 'const void *' or gl_type_name == 'void *':
     #     return 'IntPtr'
@@ -597,17 +600,17 @@ def get_cs_wrapper_type(enum_groups: Set[str], type: Type, is_return_value=False
     """
     Returns the C# type to use in a wrapper method's parameter for the given command parameter data.
     """
-    if type.name == 'GLsizeiptr':
-        # Keep things simple on the C# size and keep sizes a constant 32 bits.
-        return 'uint'
-
     if type.group == 'String' or type.name == 'GLchar' and type.indirection_count == 1 and type.is_indirection_const:
         return 'string'
 
-    if type.group in enum_groups and type.group not in ['Boolean']:
-        base_type = type.group
+    if type.name == 'GLsizeiptr' and type.indirection_count == 0:
+        # Keep things simple on the C# size and keep sizes a constant 32 bits.
+        base_type = 'uint'
     else:
-        base_type = gl_primitive_to_cs_primitive(type.name)
+        if type.group in enum_groups and type.group not in ['Boolean']:
+            base_type = type.group
+        else:
+            base_type = gl_primitive_to_cs_primitive(type.name)
 
     if type.indirection_count > 0:
         if is_return_value:
