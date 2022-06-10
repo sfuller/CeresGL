@@ -1,3 +1,4 @@
+import re
 from typing import List, Set, Dict
 from xml.etree import ElementTree
 from xml.etree.ElementTree import Element
@@ -400,9 +401,23 @@ def gen_pointer_argument_validation(parts: List[str], param: CommandParameter, c
         return
 
     # try:
-    parts_to_multiply = param.len.split('*')
-    plen = ' * '.join(get_length_expression(param.name, plen_part, command) for plen_part in parts_to_multiply)
     
+    operators = {'*', '/', '+', '-'}
+    # Tokenize the len string
+    token_start = 0
+    len_parts = []
+    for i in range(len(param.len)):
+        if param.len[i] in operators:
+            expression = param.len[token_start:i]
+            len_parts.append(get_length_expression(param.name, expression, command))
+            len_parts.append(param.len[i])
+            token_start = i + 1
+    len_parts.append(get_length_expression(param.name, param.len[token_start:], command))
+
+
+    # plen = ' * '.join(get_length_expression(param.name, plen_part, command) for plen_part in parts_to_multiply)
+    plen = ' '.join(len_parts)
+
     # except ValueError as e:
     #     print(f'Validation Gen: Skipping validation for param {param.name} of command {command.name}: {e}')
     #     return
@@ -417,6 +432,7 @@ def gen_pointer_argument_validation(parts: List[str], param: CommandParameter, c
 
 
 def get_length_expression(parameter_name: str, plen: str, command: Command) -> str:
+    plen = plen.strip()
     plen_num = None
     try:
         plen_num = int(plen)

@@ -194,7 +194,7 @@ namespace CeresGL
             throw new System.NotImplementedException();
         }
 
-        public static int glGetInteger64i_v_data(uint target)
+        public static int glGetInteger64i_v_data(GetPName target)
         {
             throw new System.NotImplementedException();
         }
@@ -234,7 +234,7 @@ namespace CeresGL
             throw new System.NotImplementedException();
         }
 
-        public static int glGetIntegeri_v_data(uint target)
+        public static int glGetIntegeri_v_data(GetPName target)
         {
             throw new System.NotImplementedException();
         }
@@ -428,7 +428,7 @@ namespace CeresGL
             throw new System.NotImplementedException();
         }
 
-        public static int glVertexAttribIPointer_pointer(int size, VertexAttribPointerType type, int stride)
+        public static int glVertexAttribIPointer_pointer(int size, VertexAttribIType type, int stride)
         {
             throw new System.NotImplementedException();
         }
@@ -508,7 +508,7 @@ namespace CeresGL
             throw new NotImplementedException();
         }
 
-        public static int glGetDoublei_v_data(uint target)
+        public static int glGetDoublei_v_data(GetPName target)
         {
             throw new NotImplementedException();
         }
@@ -613,7 +613,17 @@ namespace CeresGL
             throw new NotImplementedException();
         }
         
-        public static int glGetFloati_v_data(uint target)
+        public static int glGetFloati_v_data(GetPName target)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetnPixelMapfv_values(int bufSize)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int glGetnMapdv_v(int bufSize)
         {
             throw new NotImplementedException();
         }
